@@ -1,6 +1,6 @@
 import PokemonSearch from './Pokemon/PokemonSearch';
 import YelpSearch from './YelpSearch';
-import WeatherSearch from './WeatherSearch';
+// import WeatherSearch from './WeatherSearch';
 import './App.css';
 
 function App() {
