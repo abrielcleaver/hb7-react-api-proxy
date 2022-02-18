@@ -4,7 +4,8 @@ import Spinner from '../Spinner';
 
 export default function YelpSearch() {
     // you'll need to track your yelp search results, the loading state, and a form field for location with a default value.
-  const [searchResults, setSearchResults] = useState();
+  const [businesses, setBusinesses] = useState([]);
+  const [search, setSearch] = useState('portland or');
   const [loading, setLoading] = useState(false);
 
   async function handleYelpSubmit(e) {
@@ -13,9 +14,12 @@ export default function YelpSearch() {
     // set the loading state to true
     setLoading(true);
     // use fetch to make a request to your netlify yelp function. Be sure to pass the search query as a query param in the URL
-  
-    // put the jsonified data in state and set the loading state to false
 
+    const resp = await fetch(`/.netlify/functions/yelp?search=${search}`);
+    // put the jsonified data in state and set the loading state to false
+    const json = await resp.json();
+
+    setBusinesses(json);
     setLoading(false);
   }
   
@@ -25,14 +29,10 @@ export default function YelpSearch() {
       <form onSubmit={handleYelpSubmit}>
         Search yelp for your favorite city
         {/* add inputs/labels for city name, state, and country, using all the things we need with react forms. Don't forget to use the value property to sync these up with the default values in react state */}
-        <label> City
-          <input />
-        </label> State
-        <label>
-          <input />
-        </label>
-        <label> Country
-          <input />
+        <label> Enter City and State
+          <div>
+            <input placeholder=' ex: Los Angeles, CA' onChange={(e) => setSearch(e.target.value)}/>
+          </div> 
         </label>
 
         <button>Search yelp</button>
@@ -42,7 +42,7 @@ export default function YelpSearch() {
       {
         loading
           ? <Spinner />
-          : <BusinessesList />
+          : <BusinessesList businesses={businesses} />
       } 
     </section>
   );
