@@ -1,5 +1,5 @@
 import PokemonSearch from './Pokemon/PokemonSearch';
-import YelpSearch from './YelpSearch';
+import YelpSearch from './Yelp/YelpSearch';
 // import WeatherSearch from './WeatherSearch';
 import './App.css';
 
