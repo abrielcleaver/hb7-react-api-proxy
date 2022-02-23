@@ -17,7 +17,7 @@ exports.handler = async (e) => {
       } 
     });
     const json = await resp.json();
-    console.log(json.businesses);
+    // console.log(json.businesses);
     return { 
       statusCode: 200, 
     // this is where you shoot data back to the user. right now it's sending an empty object--replace this with the yelp data. remember, you do need to stringify it, otherwise netlify gets mad. ¯\_(ツ)_/¯
